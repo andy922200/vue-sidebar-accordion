@@ -18,6 +18,7 @@ import minimist from 'minimist'
 import autoprefixer from 'autoprefixer'
 import postCSS from 'postcss'
 import rollupPluginScss from 'rollup-plugin-scss'
+import discardComments from 'postcss-discard-comments'
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
@@ -56,7 +57,7 @@ const baseConfig = {
                 extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
             }),
             rollupPluginScss({
-                processor: css => postCSS([autoprefixer])
+                processor: css => postCSS([autoprefixer, discardComments])
                     .process(css)
                     .then(result => result.css),
                 output: 'dist/vue-sidebar.css',

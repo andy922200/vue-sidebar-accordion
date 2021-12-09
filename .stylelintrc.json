@@ -11,6 +11,12 @@
     "selector-max-id": 2,
     "indentation": 4,
     "order/properties-alphabetical-order": null,
+    "color-function-notation": null,
+    "scss/no-global-function-names": null,
+    "at-rule-no-unknown": null,
+    "no-descending-specificity": null,
+    "selector-max-compound-selectors": 5,
+    "selector-no-qualifying-type": null,
     "order/properties-order": [
       "position",
       "top",
