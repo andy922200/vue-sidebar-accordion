@@ -60,7 +60,7 @@ const baseConfig = {
                 processor: css => postCSS([autoprefixer, discardComments])
                     .process(css)
                     .then(result => result.css),
-                output: 'dist/vue-sidebar.css',
+                output: 'dist/vue-sidebar-accordion.css',
             }),
             commonjs(),
         ],
@@ -96,7 +96,7 @@ if (!argv.format || argv.format === 'es') {
         input: 'src/entry.esm.ts',
         external,
         output: {
-            file: 'dist/vue-sidebar.esm.js',
+            file: 'dist/vue-sidebar-accordion.esm.js',
             format: 'esm',
             exports: 'named',
         },
@@ -135,9 +135,9 @@ if (!argv.format || argv.format === 'cjs') {
         external,
         output: {
             compact: true,
-            file: 'dist/vue-sidebar.ssr.js',
+            file: 'dist/vue-sidebar-accordion.ssr.js',
             format: 'cjs',
-            name: 'VueSidebar',
+            name: 'VueSidebarAccordion',
             exports: 'auto',
             globals,
         },
@@ -158,9 +158,9 @@ if (!argv.format || argv.format === 'iife') {
         external,
         output: {
             compact: true,
-            file: 'dist/vue-sidebar.min.js',
+            file: 'dist/vue-sidebar-accordion.min.js',
             format: 'iife',
-            name: 'VueSidebar',
+            name: 'VueSidebarAccordion',
             exports: 'auto',
             globals,
         },

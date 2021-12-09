@@ -3,7 +3,7 @@ import {
 } from 'vue'
 
 // Import vue component
-import component from '@/vue-sidebar.vue'
+import component from '@/vue-sidebar-accordion.vue'
 
 // Define typescript interfaces for installable component
 type InstallableComponent = typeof component & { install: Exclude<Plugin['install'], undefined> };

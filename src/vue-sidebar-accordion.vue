@@ -64,7 +64,7 @@ import {
 } from 'vue-router'
 
 export default defineComponent({
-    name: 'VueSidebar',
+    name: 'VueSidebarAccordion',
     props: {
         navigationList: {
             type: Array,

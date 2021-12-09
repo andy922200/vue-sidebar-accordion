@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <vue-sidebar :navigation-list="navigationList" />
+        <vue-sidebar-accordion :navigation-list="navigationList" />
         <router-view />
     </div>
 </template>
@@ -9,12 +9,12 @@
 import {
     defineComponent 
 } from 'vue'
-import VueSidebar from '@/vue-sidebar.vue'
+import VueSidebarAccordion from '@/vue-sidebar-accordion.vue'
 
 export default defineComponent({
     name: 'ServeDev',
     components: {
-        VueSidebar
+        VueSidebarAccordion
     },
     data(){
         return {

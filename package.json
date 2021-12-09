@@ -1,11 +1,11 @@
 {
-  "name": "vue-sidebar",
+  "name": "vue-sidebar-accordion",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/vue-sidebar.ssr.js",
-  "browser": "dist/vue-sidebar.esm.js",
-  "module": "dist/vue-sidebar.esm.js",
-  "unpkg": "dist/vue-sidebar.min.js",
+  "main": "dist/vue-sidebar-accordion.ssr.js",
+  "browser": "dist/vue-sidebar-accordion.esm.js",
+  "module": "dist/vue-sidebar-accordion.esm.js",
+  "unpkg": "dist/vue-sidebar-accordion.min.js",
   "types": "dist/types/src/entry.esm.d.ts",
   "files": [
     "dist/*",
