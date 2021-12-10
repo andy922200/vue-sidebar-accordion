@@ -17,7 +17,7 @@ export default /*#__PURE__*/((): InstallableComponent => {
 
     // Attach install function executed by Vue.use()
     installable.install = (app: App) => {
-        app.component('VueSidebar', installable)
+        app.component('VueSidebarAccordion', installable)
     }
     return installable
 })()

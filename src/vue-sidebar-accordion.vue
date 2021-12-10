@@ -1,6 +1,6 @@
 <template>
     <div class="vue-sidebar" :style="{'max-width': maxWidth }">
-        <nav class="vue-sidebar__nav nav" role="navigation">
+        <nav class="vue-sidebar__nav" role="navigation">
             <ul class="vue-sidebar__nav-list">
                 <li v-for="(category,index) in navigationList" :key="`${category.name}-${index}`">
                     <input :id="`${category.name}-group-${index}`" type="checkbox" hidden v-model="category.checkbox" />
@@ -80,6 +80,15 @@ export default defineComponent({
     },
     setup(){
         const route = useRoute()
+        const openOrCloseAllPanels = function(dom:NodeListOf<Element>, status: boolean){
+            return new Promise((resolve)=>{
+                Array.prototype.slice.call(dom).forEach((item)=>{
+                    item.checked = status
+                })
+                resolve(true)
+            })
+        }
+
         const initExpand = function (dom:NodeListOf<Element>){
             Array.prototype.slice.call(dom).forEach((item)=>{
                 const checkInput = item.parentElement?.parentElement?.previousElementSibling?.previousElementSibling as HTMLInputElement | null | undefined
@@ -123,8 +132,15 @@ export default defineComponent({
             ()=>route.path,
             ()=>{
                 if(route.path){
-                    nextTick(()=>{
-                        initExpand(document.querySelectorAll('.vue-sidebar .router-link-exact-active'))
+                    nextTick( async ()=>{
+                        try{
+                            await openOrCloseAllPanels(
+                                document.querySelectorAll('.vue-sidebar input[type="checkbox"]'), false
+                            )
+                            initExpand(document.querySelectorAll('.vue-sidebar .router-link-exact-active'))
+                        }catch(err){
+                            console.log(err)
+                        }
                     })
                 }
             }
@@ -138,9 +154,11 @@ export default defineComponent({
     /* Styling navigation */
     margin-right: auto;
     margin-left: auto;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 65.8%);
 
     /* global settings in vue-sidebar */
+    text-align: left;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 65.8%);
+
     ol,
     ul {
         list-style: none;
@@ -168,12 +186,12 @@ export default defineComponent({
     }
 
     /* Styling top level items */
-    .nav label {
+    .vue-sidebar__nav label {
         cursor: pointer;
     }
 
-    .nav a,
-    .nav label {
+    .vue-sidebar__nav a,
+    .vue-sidebar__nav label {
         display: block;
         padding: 0.85rem;
         color: #fff;
@@ -181,7 +199,6 @@ export default defineComponent({
         box-shadow: inset 0 -1px lighten(#151515, 3%);
         transition: all 0.25s ease-in;
 
-        // &:focus,
         &:hover {
             color: rgba(255, 255, 255, 50%);
             background: darken(#151515, 7%);
@@ -195,7 +212,6 @@ export default defineComponent({
         background: #252525;
         box-shadow: inset 0 -1px lighten(#252525, 7%);
 
-        // &:focus,
         &:hover {
             background: darken(#252525, 7%);
         }
@@ -212,10 +228,13 @@ export default defineComponent({
         background: #353535;
         box-shadow: inset 0 -1px lighten(#353535, 7%);
 
-        // &:focus,
         &:hover {
             background: darken(#353535, 7%);
         }
+    }
+
+    .sub-group-list li .router-link-exact-active {
+        background-color: #605080;
     }
 
     /* Styling third level list items */
@@ -229,6 +248,10 @@ export default defineComponent({
         &:hover {
             background: darken(#454545, 7%);
         }
+    }
+
+    .sub-sub-group-list li .router-link-exact-active {
+        background-color: #605080;
     }
 
     /* Hide nested lists */
