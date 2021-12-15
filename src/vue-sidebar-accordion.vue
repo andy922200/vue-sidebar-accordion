@@ -50,7 +50,9 @@
                 </li>
             </ul>
         </nav>
-        <div class="footer">
+        <div class="footer" v-if="!hideFooter">
+            <slot name="footer">
+            </slot>
         </div>
     </div>
 </template>
@@ -76,6 +78,10 @@ export default defineComponent({
         maxWidth: {
             type: String,
             default: '22.5rem'
+        },
+        hideFooter: {
+            type: Boolean,
+            default: false
         }
     },
     setup(){
@@ -281,8 +287,7 @@ export default defineComponent({
 
     /* Styling footer */
     .footer {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding: 1rem;
         background-color: #050505;
     }
 }
